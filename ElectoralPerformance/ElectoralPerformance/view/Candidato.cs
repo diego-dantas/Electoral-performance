@@ -169,12 +169,20 @@ namespace ElectoralPerformance.view
 
             int[] total = new int[] { 10, 12, 39, 40 };
             string[] ano = new string[] { "Diego", "Bia", "Bete", "Gabi" };
-            ColumnSeries column = new ColumnSeries()
-            {
-                DataLabels = true,
-                Values = new ChartValues<int>(),
-                LabelPoint = point => point.Y.ToString()
-            };
+
+            /* ColumnSeries column = new ColumnSeries()
+             {
+                 DataLabels = true,
+                 Values = new ChartValues<int>(),
+                 LabelPoint = point => point.Y.ToString()
+             };
+
+             ColumnSeries column1 = new ColumnSeries()
+             {
+                 DataLabels = true,
+                 Values = new ChartValues<int>(),
+                 LabelPoint = point => point.Y.ToString()
+             };*/
 
             Axis axis = new Axis()
             {
@@ -184,22 +192,73 @@ namespace ElectoralPerformance.view
                     IsEnabled = false
                 }
             };
-
-
+            PieSeries col = new PieSeries()
+            {
+                DataLabels = true,
+                Values = new ChartValues<int>(),
+                LabelPoint = point => point.Y.ToString(),
+            };
+            PieSeries col1 = new PieSeries()
+            {
+                DataLabels = true,
+                Values = new ChartValues<int>(),
+                LabelPoint = point => point.Y.ToString(),
+            };
             axis.Labels = new List<string>();
+            List<PieSeries> LineSeries = new List<PieSeries>();
+            string zona = "";
+            for (int i = 0; i < 2; i++)
+            {
+
+                if (mySqlDataReader.HasRows)
+                {
+                    while (mySqlDataReader.Read())
+                    {
+                       /* zona = mySqlDataReader["zona"].ToString();
+                        if (zona.Equals("11"))
+                        {
+                            col.Values.Add(mySqlDataReader["qtdVotos"]);
+                            axis.Labels.Add(mySqlDataReader["nome"].ToString());
+                        }
+                        if (zona.Equals("299"))
+                        {
+                            col1.Values.Add(mySqlDataReader["qtdVotos"]);
+                            axis.Labels.Add(mySqlDataReader["nome"].ToString());
+                        }*/
+
+                        col.Values.Add(mySqlDataReader["qtdVotos"]);
+                        //col1.Values.Add(mySqlDataReader["qtdVotos"]);
+                        axis.Labels.Add(mySqlDataReader["nome"].ToString());
+
+                    }
+                }
+                
+                
+                
+            }
+            LineSeries.Add(col);
+            //LineSeries.Add(col1);
+            foreach(PieSeries c in LineSeries) cartesianChart1.Series.Add(c);
+
+
+
+
+
             //foreach (var x in total) column.Values.Add(x);
             //foreach (var x in ano) axis.Labels.Add(x.ToString());
 
-            if (mySqlDataReader.HasRows)
-            {
-                while (mySqlDataReader.Read())
-                {
-                    column.Values.Add(mySqlDataReader["qtdVotos"]);
-                    axis.Labels.Add(mySqlDataReader["nome"].ToString());
-                }
-            }
+            /* if (mySqlDataReader.HasRows)
+             {
+                 while (mySqlDataReader.Read())
+                 {
+                     column.Values.Add(mySqlDataReader["qtdVotos"]);
+                     column1.Values.Add(mySqlDataReader["qtdVotos"]);
+                     axis.Labels.Add(mySqlDataReader["nome"].ToString());
+                 }
+             }*/
 
-            cartesianChart1.Series.Add(column);
+            //cartesianChart1.Series.Add(column);
+            //cartesianChart1.Series.Add(column1);
             cartesianChart1.AxisX.Add(axis);
             cartesianChart1.AxisY.Add(new Axis
             {
@@ -213,79 +272,7 @@ namespace ElectoralPerformance.view
 
         }
 
-        public void gerarGraficoColuna()
-        {
-           // CandidatoDAO candidatoDAO = new CandidatoDAO();
-           // MySqlDataReader mySqlDataReader = candidatoDAO.selectVotoZona();
-
-                        
-/*            ArrayList year = new ArrayList();
-            year.Add("Diego");
-            year.Add("Bia");
-            year.Add("Bete");
-            year.Add("Gabi");
-
-            
-            int[] total = new int[] { 10, 12, 39, 40 };
-            int[] total2 = new int[] { 10, 12, 39, 40 };
-            string[] ano = new string[] { "Diego", "Bia", "Bete", "Gabi" };
-
-            ColumnSeries col = new ColumnSeries()
-            {
-                DataLabels = true,
-                Values = new ChartValues<int>(),
-                LabelPoint = point => point.Y.ToString()
-            };
-
-            Axis axis = new Axis(){
-                Separator = new Separator()
-                {
-                    Step = 1, 
-                    IsEnabled = false
-                }
-            };
-
-            axis.Labels = new List<string>();
-            foreach (var x in ano)
-            {
-                col.Values.Add(x);
-            }
-            cartesianChart1.Series.Add(col);
-            //cartesianChart1.Series.Add(col1);
-            //cartesianChart1.AxisX.Add(axis);
-            cartesianChart1.AxisX.Add(new Axis
-            {
-                Title = "Month",
-                Labels = new[] { "Jan", "Feb", "Mar", "Apr", "May" }
-            });
-            cartesianChart1.AxisY.Add(new Axis
-            {
-                LabelFormatter = value => value.ToString(),
-                Separator = new Separator()
-            });
-
-            /*
-                        if (mySqlDataReader.HasRows)
-                        {
-                            string nome = "";
-                            //while (mySqlDataReader.Read())
-                            //{
-                            mySqlDataReader.Read();
-                                nome = mySqlDataReader["nome"].ToString();
-                                MessageBox.Show(nome);
-                                //col.Values.Add(nome);
-                                //axis.Labels.Add(mySqlDataReader["qtdVotos"].ToString());
-                           // }
-                        }*/
-
-
-
-        }
-
-
-
-
-
+  
         public void gerarGraficaLinha()
         {
             cartesianChart1.Series = new SeriesCollection
