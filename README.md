@@ -1,2 +1,2 @@
 # Electoral-performance
-Plataforma para analise de dados, referente ao dodos fornecidos pelo TSE
+Plataforma para analise de dados, referente aos dados fornecidos pelo TSE
