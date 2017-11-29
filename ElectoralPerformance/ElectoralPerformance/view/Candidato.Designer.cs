@@ -54,7 +54,7 @@
             "ELEIÇÃO"});
             this.cbEleicao.Location = new System.Drawing.Point(12, 42);
             this.cbEleicao.Name = "cbEleicao";
-            this.cbEleicao.Size = new System.Drawing.Size(121, 21);
+            this.cbEleicao.Size = new System.Drawing.Size(165, 21);
             this.cbEleicao.TabIndex = 2;
             // 
             // comboBox2
@@ -62,7 +62,7 @@
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
             "ESTADO"});
-            this.comboBox2.Location = new System.Drawing.Point(139, 42);
+            this.comboBox2.Location = new System.Drawing.Point(196, 42);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 3;
@@ -72,7 +72,7 @@
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Items.AddRange(new object[] {
             "CIDADE"});
-            this.comboBox3.Location = new System.Drawing.Point(266, 42);
+            this.comboBox3.Location = new System.Drawing.Point(323, 42);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(121, 21);
             this.comboBox3.TabIndex = 4;
@@ -82,12 +82,12 @@
             this.comboBox4.FormattingEnabled = true;
             this.comboBox4.Items.AddRange(new object[] {
             "CARGO"});
-            this.comboBox4.Location = new System.Drawing.Point(393, 42);
+            this.comboBox4.Location = new System.Drawing.Point(450, 42);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(121, 21);
             this.comboBox4.TabIndex = 5;
             // 
-            // Teste
+            // Candidato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -98,7 +98,7 @@
             this.Controls.Add(this.cbEleicao);
             this.Controls.Add(this.cartesianChart1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Teste";
+            this.Name = "Candidato";
             this.Text = "Teste";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Teste_Load);

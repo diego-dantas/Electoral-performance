@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ElectoralPerformance.model.DAO;
 using ElectoralPerformance.model.DTO;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace ElectoralPerformance.model.DAO
 {
@@ -13,15 +14,17 @@ namespace ElectoralPerformance.model.DAO
     {
         Connection conn = new Connection();
         MySqlDataReader dataReader;
+        DataTable dataTable = new DataTable();
+        List<EleicoesDTO> eleicaoDTO;
+        EleicoesDTO eleicoes = new EleicoesDTO();
 
-        public List<EleicoesDTO>[] select()
-        {
-            string query = "select * from eleicoes";
+        public DataTable select()
+         {
+            string query = "select id, descricao from eleicoes limit 1";
             dataReader = conn.select(query);
-            
-            return List<EleicoesDTO>;
-        }
-       
+            dataTable.Load(dataReader);
+            return dataTable;           
+         }
 
     }
 

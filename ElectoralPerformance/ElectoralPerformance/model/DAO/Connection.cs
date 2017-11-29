@@ -46,7 +46,7 @@ namespace ElectoralPerformance.model.DAO
             }
             catch(MySqlException ex)
             {
-
+                Console.WriteLine("Erro ao abrir a cenexão" + ex);
                 return false;
             }
         }
@@ -59,6 +59,7 @@ namespace ElectoralPerformance.model.DAO
                 return true;
             }catch(MySqlException ex)
             {
+                Console.WriteLine("Erro ao fechar a cenexão" + ex);
                 return false;
             }
         }
@@ -76,20 +77,19 @@ namespace ElectoralPerformance.model.DAO
             }
         }
 
-
+        
         public MySqlDataReader select(string query)
         {
-            
-
-            if (this.openConnection() == true)
-            {
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                MySqlDataReader dataReader = cmd.ExecuteReader();
-
-                this.closeConnection();
-
-                return dataReader;
-            }
+            this.openConnection();
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            MySqlDataReader dataReader = cmd.ExecuteReader();            
+            this.closeConnection();
+            return dataReader;
         }
+
+
+
+
+
     }
 }

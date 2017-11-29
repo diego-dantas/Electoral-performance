@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using LiveCharts;
 using LiveCharts.Wpf;
+using ElectoralPerformance.model.DAO;
+using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 
 namespace ElectoralPerformance.view
 {
@@ -52,7 +55,22 @@ namespace ElectoralPerformance.view
 
         private void Teste_Load(object sender, EventArgs e)
         {
+            EleicoesDAO eleicoesDAO = new EleicoesDAO();
+            DataTable dataTable = eleicoesDAO.select();
 
+
+            try
+            {
+                cbEleicao.DataSource = dataTable;
+                cbEleicao.ValueMember = "id";
+                cbEleicao.DisplayMember = "descricao";
+                cbEleicao.SelectedItem = "";
+                cbEleicao.Refresh();
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Erro Combox do ano de eleição " + ex);
+
+            }
         }
     }
 }
