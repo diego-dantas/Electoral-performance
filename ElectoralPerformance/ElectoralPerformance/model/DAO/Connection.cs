@@ -80,11 +80,12 @@ namespace ElectoralPerformance.model.DAO
         
         public MySqlDataReader select(string query)
         {
-            this.openConnection();
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            MySqlDataReader dataReader = cmd.ExecuteReader();            
-            this.closeConnection();
-            return dataReader;
+           MySqlDataReader dataReader;
+           this.openConnection();
+           MySqlCommand cmd = new MySqlCommand(query, connection);
+           dataReader = cmd.ExecuteReader();
+           this.closeConnection();
+           return dataReader;
         }
 
 

@@ -62,9 +62,14 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="controller\EleicoesCTL.cs" />
+    <Compile Include="model\DAO\CandidatoDAO.cs" />
+    <Compile Include="model\DAO\CargosDAO.cs" />
+    <Compile Include="model\DAO\CidadeDAO.cs" />
     <Compile Include="model\DAO\EleicoesDAO.cs" />
+    <Compile Include="model\DAO\EstadosDAO.cs" />
+    <Compile Include="model\DTO\CandidatoDTO.cs" />
     <Compile Include="model\DTO\EleicoesDTO.cs" />
+    <Compile Include="model\DTO\EstadosDTO.cs" />
     <Compile Include="Splash.cs">
       <SubType>Form</SubType>
     </Compile>

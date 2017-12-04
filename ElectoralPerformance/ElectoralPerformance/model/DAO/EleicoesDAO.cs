@@ -13,16 +13,12 @@ namespace ElectoralPerformance.model.DAO
     public class EleicoesDAO
     {
         Connection conn = new Connection();
-        MySqlDataReader dataReader;
         DataTable dataTable = new DataTable();
-        List<EleicoesDTO> eleicaoDTO;
-        EleicoesDTO eleicoes = new EleicoesDTO();
 
         public DataTable select()
          {
-            string query = "select id, descricao from eleicoes limit 1";
-            dataReader = conn.select(query);
-            dataTable.Load(dataReader);
+            string query = "select id, descricao from eleicoes";
+            dataTable.Load(conn.select(query));
             return dataTable;           
          }
 

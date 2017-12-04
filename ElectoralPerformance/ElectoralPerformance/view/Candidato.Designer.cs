@@ -30,9 +30,16 @@
         {
             this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
             this.cbEleicao = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.cbEstado = new System.Windows.Forms.ComboBox();
+            this.cbCidade = new System.Windows.Forms.ComboBox();
+            this.cbCargo = new System.Windows.Forms.ComboBox();
+            this.btnGerar = new System.Windows.Forms.Button();
+            this.cbCandidato = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cartesianChart1
@@ -42,7 +49,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cartesianChart1.Location = new System.Drawing.Point(12, 168);
             this.cartesianChart1.Name = "cartesianChart1";
-            this.cartesianChart1.Size = new System.Drawing.Size(752, 266);
+            this.cartesianChart1.Size = new System.Drawing.Size(1192, 266);
             this.cartesianChart1.TabIndex = 1;
             this.cartesianChart1.Text = "cartesianChart1";
             // 
@@ -57,44 +64,127 @@
             this.cbEleicao.Size = new System.Drawing.Size(165, 21);
             this.cbEleicao.TabIndex = 2;
             // 
-            // comboBox2
+            // cbEstado
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "ESTADO"});
-            this.comboBox2.Location = new System.Drawing.Point(196, 42);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 3;
+            this.cbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEstado.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbEstado.FormattingEnabled = true;
+            this.cbEstado.Location = new System.Drawing.Point(195, 42);
+            this.cbEstado.Name = "cbEstado";
+            this.cbEstado.Size = new System.Drawing.Size(81, 21);
+            this.cbEstado.TabIndex = 3;
+            this.cbEstado.DropDownClosed += new System.EventHandler(this.cbEstado_DropDownClosed);
             // 
-            // comboBox3
+            // cbCidade
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
-            "CIDADE"});
-            this.comboBox3.Location = new System.Drawing.Point(323, 42);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 21);
-            this.comboBox3.TabIndex = 4;
+            this.cbCidade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCidade.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbCidade.FormattingEnabled = true;
+            this.cbCidade.Location = new System.Drawing.Point(293, 42);
+            this.cbCidade.Name = "cbCidade";
+            this.cbCidade.Size = new System.Drawing.Size(225, 21);
+            this.cbCidade.TabIndex = 4;
             // 
-            // comboBox4
+            // cbCargo
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
+            this.cbCargo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCargo.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbCargo.FormattingEnabled = true;
+            this.cbCargo.Items.AddRange(new object[] {
             "CARGO"});
-            this.comboBox4.Location = new System.Drawing.Point(450, 42);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(121, 21);
-            this.comboBox4.TabIndex = 5;
+            this.cbCargo.Location = new System.Drawing.Point(524, 42);
+            this.cbCargo.Name = "cbCargo";
+            this.cbCargo.Size = new System.Drawing.Size(166, 21);
+            this.cbCargo.TabIndex = 5;
+            this.cbCargo.DropDownClosed += new System.EventHandler(this.cbCargo_DropDownClosed);
+            // 
+            // btnGerar
+            // 
+            this.btnGerar.Location = new System.Drawing.Point(1019, 40);
+            this.btnGerar.Name = "btnGerar";
+            this.btnGerar.Size = new System.Drawing.Size(75, 23);
+            this.btnGerar.TabIndex = 6;
+            this.btnGerar.Text = "Gerar Visão";
+            this.btnGerar.UseVisualStyleBackColor = true;
+            this.btnGerar.Click += new System.EventHandler(this.btnGerar_Click);
+            // 
+            // cbCandidato
+            // 
+            this.cbCandidato.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCandidato.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbCandidato.FormattingEnabled = true;
+            this.cbCandidato.Items.AddRange(new object[] {
+            "CARGO"});
+            this.cbCandidato.Location = new System.Drawing.Point(696, 42);
+            this.cbCandidato.Name = "cbCandidato";
+            this.cbCandidato.Size = new System.Drawing.Size(317, 21);
+            this.cbCandidato.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Lucida Bright", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(52, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(91, 14);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Ano da Eleição ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Lucida Bright", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(214, 26);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(43, 14);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Estado";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Lucida Bright", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(380, 26);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(45, 14);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Cidade";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Lucida Bright", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(584, 26);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(38, 14);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Cargo";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Lucida Bright", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(836, 26);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(62, 14);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Candidato";
             // 
             // Candidato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(776, 458);
-            this.Controls.Add(this.comboBox4);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.comboBox2);
+            this.ClientSize = new System.Drawing.Size(1216, 458);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cbCandidato);
+            this.Controls.Add(this.btnGerar);
+            this.Controls.Add(this.cbCargo);
+            this.Controls.Add(this.cbCidade);
+            this.Controls.Add(this.cbEstado);
             this.Controls.Add(this.cbEleicao);
             this.Controls.Add(this.cartesianChart1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -103,6 +193,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Teste_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -110,8 +201,15 @@
 
         private LiveCharts.WinForms.CartesianChart cartesianChart1;
         private System.Windows.Forms.ComboBox cbEleicao;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox cbEstado;
+        private System.Windows.Forms.ComboBox cbCidade;
+        private System.Windows.Forms.ComboBox cbCargo;
+        private System.Windows.Forms.Button btnGerar;
+        private System.Windows.Forms.ComboBox cbCandidato;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }
