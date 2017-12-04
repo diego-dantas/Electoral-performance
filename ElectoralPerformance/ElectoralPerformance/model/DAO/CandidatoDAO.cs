@@ -46,22 +46,22 @@ namespace ElectoralPerformance.model.DAO
                          " and 			de.idCargo = 11  ";
             MySqlDataReader dataReader = connection.select(sql);
             return dataReader;
-           /* if (dataReader.HasRows)
-            {
+          
+        }
 
-
-                while (dataReader.Read())
-                {
-                    candidatoDTO.Cpf = Convert.ToDouble(dataReader["cpf"]);
-                    candidatoDTO.Nome = Convert.ToString(dataReader["nome"]);
-                    candidatoDTO.Zona = Convert.ToInt32(dataReader["zona"]);
-                    candidatoDTO.Votos = Convert.ToInt32(dataReader["qtdVotos"]);
-                    candidato.Add(candidatoDTO);
-                }
-                    
-                
-             
-            }*/
+        public MySqlDataReader selectVotoEleicao()
+        {
+            string sql = "select 		ca.cpf, ca.nome, sum(vz.qtdVotos) votos " +
+                            "from 			dados_eleicao de " +
+                            " inner join 	candidato_sequencia cs on cs.sequencia = de.sequenciaCandidato " +
+                            " inner join 	candidatos ca on ca.cpf = cs.cpf " +
+                            " inner join 	votacao_zona vz on vz.sequenciaCandidato = de.sequenciaCandidato " +
+                            " where			de.idEleicao = 1 " +
+                            " and			de.codMunicipio = 61557 " +
+                            " and 			de.idCargo = 11  " +
+                            " group by ca.cpf, ca.nome order by votos desc";
+            MySqlDataReader dataReader = connection.select(sql);
+            return dataReader;
         }
          
 

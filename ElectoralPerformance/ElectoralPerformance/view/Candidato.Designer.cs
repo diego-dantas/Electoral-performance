@@ -40,6 +40,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.pieChart1 = new LiveCharts.WinForms.PieChart();
             this.SuspendLayout();
             // 
             // cartesianChart1
@@ -47,9 +48,9 @@
             this.cartesianChart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cartesianChart1.Location = new System.Drawing.Point(12, 168);
+            this.cartesianChart1.Location = new System.Drawing.Point(636, 168);
             this.cartesianChart1.Name = "cartesianChart1";
-            this.cartesianChart1.Size = new System.Drawing.Size(1192, 266);
+            this.cartesianChart1.Size = new System.Drawing.Size(568, 306);
             this.cartesianChart1.TabIndex = 1;
             this.cartesianChart1.Text = "cartesianChart1";
             // 
@@ -170,11 +171,21 @@
             this.label5.TabIndex = 12;
             this.label5.Text = "Candidato";
             // 
+            // pieChart1
+            // 
+            this.pieChart1.Location = new System.Drawing.Point(12, 107);
+            this.pieChart1.Name = "pieChart1";
+            this.pieChart1.Size = new System.Drawing.Size(597, 367);
+            this.pieChart1.TabIndex = 13;
+            this.pieChart1.Text = "pieChart1";
+            this.pieChart1.DataClick += new LiveCharts.Events.DataClickHandler(this.pieChart1_DataClick);
+            // 
             // Candidato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1216, 458);
+            this.ClientSize = new System.Drawing.Size(1216, 498);
+            this.Controls.Add(this.pieChart1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -211,5 +222,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private LiveCharts.WinForms.PieChart pieChart1;
     }
 }

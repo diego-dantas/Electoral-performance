@@ -26,6 +26,8 @@ namespace ElectoralPerformance.view
       
             //gerarGraficoColuna();
             grafico();
+            //graficoPizza();
+            graficoPizza();
 
 
         }
@@ -192,20 +194,20 @@ namespace ElectoralPerformance.view
                     IsEnabled = false
                 }
             };
-            PieSeries col = new PieSeries()
+            ColumnSeries col = new ColumnSeries()
             {
                 DataLabels = true,
                 Values = new ChartValues<int>(),
                 LabelPoint = point => point.Y.ToString(),
             };
-            PieSeries col1 = new PieSeries()
+            ColumnSeries col1 = new ColumnSeries()
             {
                 DataLabels = true,
                 Values = new ChartValues<int>(),
                 LabelPoint = point => point.Y.ToString(),
             };
             axis.Labels = new List<string>();
-            List<PieSeries> LineSeries = new List<PieSeries>();
+            List<ColumnSeries> LineSeries = new List<ColumnSeries>();
             string zona = "";
             for (int i = 0; i < 2; i++)
             {
@@ -238,7 +240,7 @@ namespace ElectoralPerformance.view
             }
             LineSeries.Add(col);
             //LineSeries.Add(col1);
-            foreach(PieSeries c in LineSeries) cartesianChart1.Series.Add(c);
+            foreach(ColumnSeries c in LineSeries) cartesianChart1.Series.Add(c);
 
 
 
@@ -272,7 +274,114 @@ namespace ElectoralPerformance.view
 
         }
 
-  
+        public void graficoPizza()
+        {
+            CandidatoDAO candidatoDAO = new CandidatoDAO();
+            MySqlDataReader mySqlDataReader = candidatoDAO.selectVotoEleicao();
+            int[] votos = new int[3];
+            string[] nome = new string[3];
+            
+            PieSeries pie0 = new PieSeries()
+            {
+                Values = new ChartValues<int>(),
+                PushOut = 15,
+                DataLabels = true,
+                LabelPoint = point => point.Y.ToString()
+            };
+
+            PieSeries pie1 = new PieSeries()
+            {
+                Values = new ChartValues<int>(),
+                PushOut = 15,
+                DataLabels = true,
+                LabelPoint = point => point.Y.ToString()
+            };
+
+            PieSeries pie2 = new PieSeries()
+            {
+                Values = new ChartValues<int>(),
+                PushOut = 15,
+                DataLabels = true,
+                LabelPoint = point => point.Y.ToString()
+            };
+
+            List<PieSeries> pieSeries = new List<PieSeries>();
+            if (mySqlDataReader.HasRows)
+            {
+
+                for(int i = 0; i < 3; i++)                
+                {
+                    mySqlDataReader.Read();
+                    votos[i] = Convert.ToInt32(mySqlDataReader["votos"]);
+                    nome[i] = mySqlDataReader["nome"].ToString();
+                }
+            }
+
+            pie0.Values.Add(votos[0]);
+            pie0.Title = nome[0];
+            pie1.Values.Add(votos[1]);
+            pie1.Title = nome[1];
+            pie2.Values.Add(votos[2]);
+            pie2.Title = nome[2];
+           
+
+            pieSeries.Add(pie0);
+            pieSeries.Add(pie1);
+            pieSeries.Add(pie2);
+            foreach (var x in pieSeries) pieChart1.Series.Add(x);
+
+            pieChart1.LegendLocation = LegendLocation.Right;
+            
+        }
+
+        private void pieChart1_DataClick(object sender, ChartPoint chartPoint)
+        {
+            MessageBox.Show("Click ");
+        }
+
+
+        public void graficoPizzaaa()
+        {
+            Func<ChartPoint, string> labelPoint = chartPoint =>
+                string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
+
+            pieChart1.Series = new SeriesCollection
+            {
+                new PieSeries
+                {
+                    Title = "Maria",
+                    Values = new ChartValues<double> {3},
+                    PushOut = 15,
+                    DataLabels = true,
+                    LabelPoint = labelPoint
+                },
+                new PieSeries
+                {
+                    Title = "Charles",
+                    Values = new ChartValues<double> {4},
+                    DataLabels = true,
+                    LabelPoint = labelPoint
+                },
+                new PieSeries
+                {
+                    Title = "Frida",
+                    Values = new ChartValues<double> {6},
+                    DataLabels = true,
+                    LabelPoint = labelPoint
+                },
+                new PieSeries
+                {
+                    Title = "Frederic",
+                    Values = new ChartValues<double> {2},
+                    DataLabels = true,
+                    LabelPoint = labelPoint
+                }
+            };
+
+            pieChart1.LegendLocation = LegendLocation.Bottom;
+        }
+       
+
         public void gerarGraficaLinha()
         {
             cartesianChart1.Series = new SeriesCollection
@@ -319,6 +428,8 @@ namespace ElectoralPerformance.view
 
 
         }
+
+       
 
 
         /*public void grafico()
