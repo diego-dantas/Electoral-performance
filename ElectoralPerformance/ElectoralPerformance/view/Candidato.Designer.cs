@@ -48,9 +48,9 @@
             this.cartesianChart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cartesianChart1.Location = new System.Drawing.Point(636, 168);
+            this.cartesianChart1.Location = new System.Drawing.Point(12, 351);
             this.cartesianChart1.Name = "cartesianChart1";
-            this.cartesianChart1.Size = new System.Drawing.Size(568, 306);
+            this.cartesianChart1.Size = new System.Drawing.Size(1192, 391);
             this.cartesianChart1.TabIndex = 1;
             this.cartesianChart1.Text = "cartesianChart1";
             // 
@@ -175,7 +175,7 @@
             // 
             this.pieChart1.Location = new System.Drawing.Point(12, 107);
             this.pieChart1.Name = "pieChart1";
-            this.pieChart1.Size = new System.Drawing.Size(597, 367);
+            this.pieChart1.Size = new System.Drawing.Size(610, 238);
             this.pieChart1.TabIndex = 13;
             this.pieChart1.Text = "pieChart1";
             this.pieChart1.DataClick += new LiveCharts.Events.DataClickHandler(this.pieChart1_DataClick);
@@ -184,7 +184,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1216, 498);
+            this.ClientSize = new System.Drawing.Size(1216, 766);
             this.Controls.Add(this.pieChart1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -200,6 +200,7 @@
             this.Controls.Add(this.cartesianChart1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Candidato";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Teste";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Teste_Load);

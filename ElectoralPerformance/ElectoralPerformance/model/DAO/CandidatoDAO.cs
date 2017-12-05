@@ -63,6 +63,20 @@ namespace ElectoralPerformance.model.DAO
             MySqlDataReader dataReader = connection.select(sql);
             return dataReader;
         }
+
+
+        public DataTable selectVotoSecao()
+        {
+            string sql = "select c.idZona as ZONA, c.idSecao AS 'SECAO', sum(c.qtdVotos) AS VOTOS " +
+                         "from voto_secao c " +
+                         "where c.codMunicipio = 61557 " +
+                         " and c.idCargo = 11 " +
+                         " and c.numCandidato = 45 " +
+                         " group by c.numCandidato, c.idZona, c.idSecao " +
+                         " order by sum(c.qtdVotos) desc ";
+            dataTable.Load(connection.select(sql));
+            return dataTable;
+        }
          
 
     }

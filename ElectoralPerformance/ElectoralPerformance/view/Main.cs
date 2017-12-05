@@ -13,7 +13,8 @@ namespace ElectoralPerformance.view
 {
     public partial class Main : Form
     {
-        
+        home home = new home();
+        Candidato candidato = new Candidato();
         public Main()
         {
             InitializeComponent();
@@ -25,25 +26,48 @@ namespace ElectoralPerformance.view
             Connection conne = new Connection();
             conne.openConnection();
             
+        }    
+
+        private void lnkSair_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Close();
         }
 
-        private void lnkInicio_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void cANDIDATOToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            lblTitle.Visible = true;
+            this.pnlMain.Controls.Remove(candidato);
+            this.pnlMain.Controls.Remove(home);
         }
 
-        private void lnkCandidato_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void candidatoToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            
-            Candidato candidato = new Candidato();
+            //callView(home);
+            lblTitle.Visible = false;
+            this.pnlMain.Controls.Remove(candidato);
+            home.TopLevel = false;
+            this.pnlMain.Controls.Add(home);
+            home.Show();
+        }
+
+        private void votosPorZonaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //callView(candidato);
+            lblTitle.Visible = false;
+            this.pnlMain.Controls.Remove(home);
             candidato.TopLevel = false;
             this.pnlMain.Controls.Add(candidato);
             candidato.Show();
         }
 
-        private void lnkSair_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+
+        public void callView(Form form)
         {
-            this.Close();
+            //form = new Form();
+            form.TopLevel = false;
+            this.pnlMain.Controls.Add(form);
+            form.Show();
+            MessageBox.Show(form.Name.ToString());
         }
     }
 }

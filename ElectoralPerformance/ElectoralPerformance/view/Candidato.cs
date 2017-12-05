@@ -208,7 +208,7 @@ namespace ElectoralPerformance.view
             };
             axis.Labels = new List<string>();
             List<ColumnSeries> LineSeries = new List<ColumnSeries>();
-            string zona = "";
+            
             for (int i = 0; i < 2; i++)
             {
 
@@ -428,8 +428,6 @@ namespace ElectoralPerformance.view
 
 
         }
-
-       
 
 
         /*public void grafico()
