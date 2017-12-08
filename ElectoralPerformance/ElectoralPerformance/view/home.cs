@@ -91,49 +91,59 @@ namespace ElectoralPerformance.view
             CandidatoDAO candidatoDAO = new CandidatoDAO();
             MySqlDataReader mySqlDataReader = candidatoDAO.selectVotoZona();
 
-           
-            
-            
-
-            ccVotosZona.Series = new SeriesCollection
+            Axis axis = new Axis()
             {
-                new RowSeries
+                Separator = new Separator()
                 {
-                    Title = "2015",
-                    Values = new ChartValues<double> { 10, 50, 39, 50 }
+                    Step = 1,
+                    IsEnabled = false
                 }
             };
 
-            //adding series will update and animate the chart automatically
-            ccVotosZona.Series.Add(new RowSeries
+            ColumnSeries col = new ColumnSeries()
             {
-                Title = "2016",
-                Values = new ChartValues<double> { 11, 56, 42 }
-            });
+                DataLabels = true,
+                Values = new ChartValues<int>(),
+                Title = "ZONA 11",
+                LabelPoint = point => point.Y.ToString(),
+            };
+            ColumnSeries col1 = new ColumnSeries()
+            {
+                DataLabels = true,
+                Values = new ChartValues<int>(),
+                Title = "ZONA 299",
+                LabelPoint = point => point.Y.ToString(),
+            };
+            axis.Labels = new List<string>();
+            List<ColumnSeries> LineSeries = new List<ColumnSeries>();
 
-            //also adding values updates and animates the chart automatically
-            ccVotosZona.Series[1].Values.Add(48d);
-
+            if (mySqlDataReader.HasRows)
+            {
+                while (mySqlDataReader.Read())
+                {
+                    if (mySqlDataReader["zona"].Equals(11))
+                    {
+                        col.Values.Add(mySqlDataReader["qtdVotos"]);
+                        axis.Labels.Add(mySqlDataReader["nome"].ToString());
+                    }
+                    else
+                    {
+                        col1.Values.Add(mySqlDataReader["qtdVotos"]);
+                        axis.Labels.Add(mySqlDataReader["nome"].ToString());
+                    }
+                }
+            }
+            LineSeries.Add(col);
+            LineSeries.Add(col1);
+            foreach (ColumnSeries c in LineSeries) ccVotosZona.Series.Add(c);
+            ccVotosZona.AxisX.Add(axis);
             ccVotosZona.AxisY.Add(new Axis
             {
-                Labels = new[] { "Maria", "Susan", "Charles", "Frida" }
+                LabelFormatter = value => value.ToString(),
+                Separator = new Separator()
+
             });
-
-            ccVotosZona.AxisX.Add(new Axis
-            {
-                LabelFormatter = value => value.ToString("N")
-            });
-
-            var tooltip = new DefaultTooltip
-            {
-                SelectionMode = TooltipSelectionMode.SharedYValues
-            };
-
-            ccVotosZona.DataTooltip = tooltip;
-            
         }
-
-
 
         public void populaDataGrid()
         {

@@ -22,14 +22,7 @@ namespace ElectoralPerformance.view
     
         public Candidato()
         {
-            InitializeComponent();
-      
-            //gerarGraficoColuna();
-            grafico();
-            //graficoPizza();
-            graficoPizza();
-
-
+            InitializeComponent();         
         }
         
 
@@ -44,7 +37,15 @@ namespace ElectoralPerformance.view
 
         private void btnGerar_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(cbEleicao.SelectedValue.ToString());
+            graficoPizza(cbCidade.SelectedValue.ToString(),
+                         cbEleicao.SelectedValue.ToString(),
+                         cbCandidato.SelectedValue.ToString(),
+                         cbCargo.SelectedValue.ToString());
+
+            grafico(cbCidade.SelectedValue.ToString(),
+                         cbEleicao.SelectedValue.ToString(),
+                         cbCandidato.SelectedValue.ToString(),
+                         cbCargo.SelectedValue.ToString());
         }
 
         
@@ -148,6 +149,7 @@ namespace ElectoralPerformance.view
 
         public void populaCandidato(string eleicao, string codMunicipio, string idCargo)
         {
+            
             CandidatoDAO candidatoDAO = new CandidatoDAO();
 
             try
@@ -164,27 +166,35 @@ namespace ElectoralPerformance.view
         }
 
 
-        public void grafico()
+        public void grafico(string codMun, string idEleicao, string cpf, string idCargo)
         {
+            cartesianChart1.Series.Clear();
+            cartesianChart1.AxisY.Clear();
+            cartesianChart1.AxisX.Clear();
             CandidatoDAO candidatoDAO = new CandidatoDAO();
-            MySqlDataReader mySqlDataReader = candidatoDAO.selectVotoZona();
+            int numCand = candidatoDAO.getNumberCandidato(codMun, idEleicao, cpf, idCargo);
 
-            int[] total = new int[] { 10, 12, 39, 40 };
-            string[] ano = new string[] { "Diego", "Bia", "Bete", "Gabi" };
+            MySqlDataReader mySqlDataReader = candidatoDAO.selectVotoSecaoPorCandidato(codMun, idCargo, numCand.ToString());
+            
 
-            /* ColumnSeries column = new ColumnSeries()
+         
+             LineSeries column = new LineSeries()
              {
                  DataLabels = true,
                  Values = new ChartValues<int>(),
+                 Title = "Zona",
                  LabelPoint = point => point.Y.ToString()
              };
 
-             ColumnSeries column1 = new ColumnSeries()
-             {
-                 DataLabels = true,
-                 Values = new ChartValues<int>(),
-                 LabelPoint = point => point.Y.ToString()
-             };*/
+            LineSeries column1 = new LineSeries()
+            {
+                DataLabels = true,
+                Values = new ChartValues<int>(),
+                Title = "Zona",
+                LabelPoint = point => point.Y.ToString()
+            };
+
+
 
             Axis axis = new Axis()
             {
@@ -192,283 +202,168 @@ namespace ElectoralPerformance.view
                 {
                     Step = 1,
                     IsEnabled = false
+                    
                 }
             };
-            ColumnSeries col = new ColumnSeries()
-            {
-                DataLabels = true,
-                Values = new ChartValues<int>(),
-                LabelPoint = point => point.Y.ToString(),
-            };
-            ColumnSeries col1 = new ColumnSeries()
-            {
-                DataLabels = true,
-                Values = new ChartValues<int>(),
-                LabelPoint = point => point.Y.ToString(),
-            };
+            
+
             axis.Labels = new List<string>();
-            List<ColumnSeries> LineSeries = new List<ColumnSeries>();
-            
-            for (int i = 0; i < 2; i++)
-            {
-
-                if (mySqlDataReader.HasRows)
-                {
-                    while (mySqlDataReader.Read())
-                    {
-                       /* zona = mySqlDataReader["zona"].ToString();
-                        if (zona.Equals("11"))
-                        {
-                            col.Values.Add(mySqlDataReader["qtdVotos"]);
-                            axis.Labels.Add(mySqlDataReader["nome"].ToString());
-                        }
-                        if (zona.Equals("299"))
-                        {
-                            col1.Values.Add(mySqlDataReader["qtdVotos"]);
-                            axis.Labels.Add(mySqlDataReader["nome"].ToString());
-                        }*/
-
-                        col.Values.Add(mySqlDataReader["qtdVotos"]);
-                        //col1.Values.Add(mySqlDataReader["qtdVotos"]);
-                        axis.Labels.Add(mySqlDataReader["nome"].ToString());
-
-                    }
-                }
-                
-                
-                
-            }
-            LineSeries.Add(col);
-            //LineSeries.Add(col1);
-            foreach(ColumnSeries c in LineSeries) cartesianChart1.Series.Add(c);
-
-
-
-
-
-            //foreach (var x in total) column.Values.Add(x);
-            //foreach (var x in ano) axis.Labels.Add(x.ToString());
-
-            /* if (mySqlDataReader.HasRows)
-             {
-                 while (mySqlDataReader.Read())
-                 {
-                     column.Values.Add(mySqlDataReader["qtdVotos"]);
-                     column1.Values.Add(mySqlDataReader["qtdVotos"]);
-                     axis.Labels.Add(mySqlDataReader["nome"].ToString());
-                 }
-             }*/
-
-            //cartesianChart1.Series.Add(column);
-            //cartesianChart1.Series.Add(column1);
-            cartesianChart1.AxisX.Add(axis);
-            cartesianChart1.AxisY.Add(new Axis
-            {
-                LabelFormatter = value => value.ToString(),
-                Separator = new Separator()
-            
-            });
-            
-               
-            
-
-        }
-
-        public void graficoPizza()
-        {
-            CandidatoDAO candidatoDAO = new CandidatoDAO();
-            MySqlDataReader mySqlDataReader = candidatoDAO.selectVotoEleicao();
-            int[] votos = new int[3];
-            string[] nome = new string[3];
-            
-            PieSeries pie0 = new PieSeries()
-            {
-                Values = new ChartValues<int>(),
-                PushOut = 15,
-                DataLabels = true,
-                LabelPoint = point => point.Y.ToString()
-            };
-
-            PieSeries pie1 = new PieSeries()
-            {
-                Values = new ChartValues<int>(),
-                PushOut = 15,
-                DataLabels = true,
-                LabelPoint = point => point.Y.ToString()
-            };
-
-            PieSeries pie2 = new PieSeries()
-            {
-                Values = new ChartValues<int>(),
-                PushOut = 15,
-                DataLabels = true,
-                LabelPoint = point => point.Y.ToString()
-            };
-
-            List<PieSeries> pieSeries = new List<PieSeries>();
-            if (mySqlDataReader.HasRows)
-            {
-
-                for(int i = 0; i < 3; i++)                
-                {
-                    mySqlDataReader.Read();
-                    votos[i] = Convert.ToInt32(mySqlDataReader["votos"]);
-                    nome[i] = mySqlDataReader["nome"].ToString();
-                }
-            }
-
-            pie0.Values.Add(votos[0]);
-            pie0.Title = nome[0];
-            pie1.Values.Add(votos[1]);
-            pie1.Title = nome[1];
-            pie2.Values.Add(votos[2]);
-            pie2.Title = nome[2];
+            List<LineSeries> LineSeries = new List<LineSeries>();
            
 
-            pieSeries.Add(pie0);
-            pieSeries.Add(pie1);
-            pieSeries.Add(pie2);
-            foreach (var x in pieSeries) pieChart1.Series.Add(x);
 
-            pieChart1.LegendLocation = LegendLocation.Right;
-            
-        }
-
-        private void pieChart1_DataClick(object sender, ChartPoint chartPoint)
-        {
-            MessageBox.Show("Click ");
-        }
-
-
-        public void graficoPizzaaa()
-        {
-            Func<ChartPoint, string> labelPoint = chartPoint =>
-                string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
-
-            pieChart1.Series = new SeriesCollection
+            if (mySqlDataReader.HasRows)
             {
-                new PieSeries
+                while (mySqlDataReader.Read())
                 {
-                    Title = "Maria",
-                    Values = new ChartValues<double> {3},
-                    PushOut = 15,
-                    DataLabels = true,
-                    LabelPoint = labelPoint
-                },
-                new PieSeries
-                {
-                    Title = "Charles",
-                    Values = new ChartValues<double> {4},
-                    DataLabels = true,
-                    LabelPoint = labelPoint
-                },
-                new PieSeries
-                {
-                    Title = "Frida",
-                    Values = new ChartValues<double> {6},
-                    DataLabels = true,
-                    LabelPoint = labelPoint
-                },
-                new PieSeries
-                {
-                    Title = "Frederic",
-                    Values = new ChartValues<double> {2},
-                    DataLabels = true,
-                    LabelPoint = labelPoint
+                    if (mySqlDataReader["zona"].Equals(11))
+                    {
+                        column.Values.Add(Convert.ToInt32(mySqlDataReader["VOTOS"]));
+                        axis.Labels.Add("Seção " + mySqlDataReader["secao"].ToString());
+                    }
+                    else
+                    {
+                        column1.Values.Add(Convert.ToInt32(mySqlDataReader["VOTOS"]));
+                        axis.Labels.Add("Seção " + mySqlDataReader["secao"].ToString());
+                    }
                 }
-            };
+            }
+                                             
+            LineSeries.Add(column);
+            LineSeries.Add(column1);
+            foreach (LineSeries c in LineSeries) cartesianChart1.Series.Add(c);
 
-            pieChart1.LegendLocation = LegendLocation.Bottom;
-        }
-       
-
-        public void gerarGraficaLinha()
-        {
-            cartesianChart1.Series = new SeriesCollection
-            {
-                new LineSeries
-                {
-                    Title = "Series 1",
-                    Values = new ChartValues<double> {4, 6, 5, 2, 7}
-                },
-                new LineSeries
-                {
-                    Title = "Series 2",
-                    Values = new ChartValues<double> {6, 7, 3, 4, 6},
-                    PointGeometry = null
-                },
-                new LineSeries
-                {
-                    Title = "Series 2",
-                    Values = new ChartValues<double> {5, 2, 8, 3},
-                    PointGeometry = DefaultGeometries.Square,
-                    PointGeometrySize = 15
-                }
-            };
-
-            cartesianChart1.AxisX.Add(new Axis
-            {
-                Title = "Month",
-                Labels = new[] { "Jan", "Feb", "Mar", "Apr", "May" }
-            });
-
-            cartesianChart1.AxisY.Add(new Axis
-            {
-                Title = "Sales",
-                LabelFormatter = value => value.ToString("C")
-            });
-
-            cartesianChart1.LegendLocation = LegendLocation.Right;
-
-            //modifying the series collection will animate and update the chart
-    
-
-            //modifying any series values will also animate and update the chart
-            cartesianChart1.Series[2].Values.Add(5d);
-
-
-        }
-
-
-        /*public void grafico()
-        {
-            int[] total = new int[] { 10, 12, 39, 40 };
-            string[] ano = new string[] { "Diego", "Bia", "Bete", "Gabi" };
-            ColumnSeries column = new ColumnSeries()
-            {
-                DataLabels = true,
-                Values = new ChartValues<int>(),
-                LabelPoint = point => point.Y.ToString()
-            };
-
-            Axis axis = new Axis()
-            {
-                Separator = new Separator()
-                {
-                    Step = 1,
-                    IsEnabled = false
-                }
-            };
-
-
-            axis.Labels = new List<string>();
-            foreach (var x in total) column.Values.Add(x);
-            foreach (var x in ano) axis.Labels.Add(x.ToString());
-
+            cartesianChart1.Zoom = ZoomingOptions.X;
             cartesianChart1.Series.Add(column);
             cartesianChart1.AxisX.Add(axis);
             cartesianChart1.AxisY.Add(new Axis
             {
-                LabelFormatter = value => value.ToString(),
-                Separator = new Separator()
-            
+                LabelFormatter = value => value.ToString()
+
+
             });
-            
-               
-            
+            cartesianChart1.LegendLocation = LegendLocation.Top;
+        }
+       
 
-        }*/
+        public void graficoPizza(string codMun, string idEleicao, string cpf, string idCargo)
+        {
 
+            pieChart1.Series.Clear(); 
+
+            CandidatoDAO candidatoDAO = new CandidatoDAO();
+            MySqlDataReader mySqlDataReader = candidatoDAO.selectVotoZonaCandidato(codMun, idEleicao, cpf, idCargo);
+            int linhas = candidatoDAO.countZonaCandidato(codMun, idEleicao, cpf, idCargo);
+            List<PieSeries> pieSeries = new List<PieSeries>();
+            
+            int[] votos = new int[linhas];
+            string[] nome = new string[linhas];
+            string[] zona = new string[linhas];
+ 
+
+
+            if (mySqlDataReader.HasRows)
+            {
+                
+                int cont = 0;
+                while(mySqlDataReader.Read())
+                {
+                    
+                    votos[cont] = Convert.ToInt32(mySqlDataReader["qtdVotos"]);
+                    nome[cont] = mySqlDataReader["nome"].ToString();
+                    zona[cont] = mySqlDataReader["zona"].ToString();
+                    cont++;
+                }
+            }
+
+                       
+            if (linhas == 1)
+            {
+                PieSeries pie0 = new PieSeries()
+                {
+                    Values = new ChartValues<int>(),
+                    PushOut = 15,
+                    DataLabels = true,
+                    LabelPoint = point => point.Y.ToString()
+                };
+
+                pie0.Values.Add(votos[0]);
+                pie0.Title = zona[0];
+
+                pieSeries.Add(pie0);
+                
+            }
+            else if (linhas == 2)
+            {
+                PieSeries pie0 = new PieSeries()
+                {
+                    Values = new ChartValues<int>(),
+                    PushOut = 15,
+                    DataLabels = true,
+                    LabelPoint = point => point.Y.ToString()
+                };
+
+                PieSeries pie1 = new PieSeries()
+                {
+                    Values = new ChartValues<int>(),
+                    PushOut = 15,
+                    DataLabels = true,
+                    LabelPoint = point => point.Y.ToString()
+                };
+
+                pie0.Values.Add(votos[0]);
+                pie0.Title = zona[0];
+                pie1.Values.Add(votos[1]);
+                pie1.Title = zona[1];
+
+                pieSeries.Add(pie0);
+                pieSeries.Add(pie1);
+                
+            }
+            else if (linhas == 3)
+            {
+                PieSeries pie0 = new PieSeries()
+                {
+                    Values = new ChartValues<int>(),
+                    PushOut = 15,
+                    DataLabels = true,
+                    LabelPoint = point => point.Y.ToString()
+                };
+
+                PieSeries pie1 = new PieSeries()
+                {
+                    Values = new ChartValues<int>(),
+                    PushOut = 15,
+                    DataLabels = true,
+                    LabelPoint = point => point.Y.ToString()
+                };
+
+                PieSeries pie2 = new PieSeries()
+                {
+                    Values = new ChartValues<int>(),
+                    PushOut = 15,
+                    DataLabels = true,
+                    LabelPoint = point => point.Y.ToString()
+                };
+                pie0.Values.Add(votos[0]);
+                pie0.Title = zona[0];
+                pie1.Values.Add(votos[1]);
+                pie1.Title = zona[1];
+                pie2.Values.Add(votos[2]);
+                pie2.Title = zona[2];
+
+                pieSeries.Add(pie0);
+                pieSeries.Add(pie1);
+                pieSeries.Add(pie2);
+            }
+            
+            foreach (var x in pieSeries) pieChart1.Series.Add(x); 
+
+      
+
+            pieChart1.LegendLocation = LegendLocation.Right;
+
+        }
 
     }
 }
