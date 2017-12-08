@@ -179,7 +179,6 @@
             this.pieChart1.Size = new System.Drawing.Size(610, 238);
             this.pieChart1.TabIndex = 13;
             this.pieChart1.Text = "pieChart1";
-            
             // 
             // label6
             // 

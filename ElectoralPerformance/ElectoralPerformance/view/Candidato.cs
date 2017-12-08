@@ -46,6 +46,8 @@ namespace ElectoralPerformance.view
                          cbEleicao.SelectedValue.ToString(),
                          cbCandidato.SelectedValue.ToString(),
                          cbCargo.SelectedValue.ToString());
+
+            
         }
 
         
@@ -168,21 +170,22 @@ namespace ElectoralPerformance.view
 
         public void grafico(string codMun, string idEleicao, string cpf, string idCargo)
         {
+            
             cartesianChart1.Series.Clear();
             cartesianChart1.AxisY.Clear();
             cartesianChart1.AxisX.Clear();
+
             CandidatoDAO candidatoDAO = new CandidatoDAO();
             int numCand = candidatoDAO.getNumberCandidato(codMun, idEleicao, cpf, idCargo);
-
+           
             MySqlDataReader mySqlDataReader = candidatoDAO.selectVotoSecaoPorCandidato(codMun, idCargo, numCand.ToString());
-            
+           
 
-         
-             LineSeries column = new LineSeries()
+
+            LineSeries column = new LineSeries()
              {
                  DataLabels = true,
                  Values = new ChartValues<int>(),
-                 Title = "Zona",
                  LabelPoint = point => point.Y.ToString()
              };
 
@@ -190,7 +193,6 @@ namespace ElectoralPerformance.view
             {
                 DataLabels = true,
                 Values = new ChartValues<int>(),
-                Title = "Zona",
                 LabelPoint = point => point.Y.ToString()
             };
 
@@ -216,15 +218,18 @@ namespace ElectoralPerformance.view
             {
                 while (mySqlDataReader.Read())
                 {
+                    
                     if (mySqlDataReader["zona"].Equals(11))
                     {
                         column.Values.Add(Convert.ToInt32(mySqlDataReader["VOTOS"]));
                         axis.Labels.Add("Seção " + mySqlDataReader["secao"].ToString());
+                        column.Title = "Zona " + mySqlDataReader["zona"].ToString();
                     }
                     else
                     {
                         column1.Values.Add(Convert.ToInt32(mySqlDataReader["VOTOS"]));
                         axis.Labels.Add("Seção " + mySqlDataReader["secao"].ToString());
+                        column1.Title = "Zona " +  mySqlDataReader["zona"].ToString();
                     }
                 }
             }
@@ -234,7 +239,6 @@ namespace ElectoralPerformance.view
             foreach (LineSeries c in LineSeries) cartesianChart1.Series.Add(c);
 
             cartesianChart1.Zoom = ZoomingOptions.X;
-            cartesianChart1.Series.Add(column);
             cartesianChart1.AxisX.Add(axis);
             cartesianChart1.AxisY.Add(new Axis
             {
@@ -254,6 +258,7 @@ namespace ElectoralPerformance.view
             CandidatoDAO candidatoDAO = new CandidatoDAO();
             MySqlDataReader mySqlDataReader = candidatoDAO.selectVotoZonaCandidato(codMun, idEleicao, cpf, idCargo);
             int linhas = candidatoDAO.countZonaCandidato(codMun, idEleicao, cpf, idCargo);
+            
             List<PieSeries> pieSeries = new List<PieSeries>();
             
             int[] votos = new int[linhas];
@@ -364,6 +369,8 @@ namespace ElectoralPerformance.view
             pieChart1.LegendLocation = LegendLocation.Right;
 
         }
+
+       
 
     }
 }

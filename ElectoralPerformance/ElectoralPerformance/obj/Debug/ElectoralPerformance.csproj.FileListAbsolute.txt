@@ -45,3 +45,6 @@ C:\Users\diego.dantas-admin\source\repos\Electoral-performance\ElectoralPerforma
 C:\Users\diego.dantas-admin\source\repos\Electoral-performance\ElectoralPerformance\ElectoralPerformance\bin\Debug\LiveCharts.Wpf.xml
 C:\Users\diego.dantas-admin\source\repos\Electoral-performance\ElectoralPerformance\ElectoralPerformance\bin\Debug\MySql.Data.xml
 C:\Users\diego.dantas-admin\source\repos\Electoral-performance\ElectoralPerformance\ElectoralPerformance\obj\Debug\ElectoralPerformance.view.home.resources
+C:\Users\diego.dantas-admin\source\repos\Electoral-performance\ElectoralPerformance\ElectoralPerformance\obj\Debug\ElectoralPerformance.view.Eleitorado.resources
+C:\Users\diego.dantas-admin\source\repos\Electoral-performance\ElectoralPerformance\ElectoralPerformance\obj\Debug\ElectoralPerformance.view.Ranking.resources
+C:\Users\diego.dantas-admin\source\repos\Electoral-performance\ElectoralPerformance\ElectoralPerformance\obj\Debug\ElectoralPerformance.view.Partido.resources

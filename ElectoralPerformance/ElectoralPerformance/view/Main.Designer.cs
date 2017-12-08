@@ -28,12 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.pnlMain = new System.Windows.Forms.Panel();
+            this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
+            this.lblBody = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.cANDIDATOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.candidatoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.votosPorZonaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eleitoradoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.partidoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lnkSair = new System.Windows.Forms.LinkLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlMain.SuspendLayout();
@@ -47,12 +53,38 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlMain.BackColor = System.Drawing.Color.White;
+            this.pnlMain.Controls.Add(this.cartesianChart1);
+            this.pnlMain.Controls.Add(this.lblBody);
             this.pnlMain.Controls.Add(this.lblTitle);
             this.pnlMain.ForeColor = System.Drawing.Color.Black;
             this.pnlMain.Location = new System.Drawing.Point(127, 0);
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.Size = new System.Drawing.Size(894, 412);
             this.pnlMain.TabIndex = 1;
+            // 
+            // cartesianChart1
+            // 
+            this.cartesianChart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cartesianChart1.Location = new System.Drawing.Point(7, 300);
+            this.cartesianChart1.Name = "cartesianChart1";
+            this.cartesianChart1.Size = new System.Drawing.Size(876, 100);
+            this.cartesianChart1.TabIndex = 2;
+            this.cartesianChart1.Text = "cartesianChart1";
+            // 
+            // lblBody
+            // 
+            this.lblBody.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblBody.AutoSize = true;
+            this.lblBody.Font = new System.Drawing.Font("Lucida Bright", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBody.Location = new System.Drawing.Point(101, 94);
+            this.lblBody.Name = "lblBody";
+            this.lblBody.Size = new System.Drawing.Size(934, 140);
+            this.lblBody.TabIndex = 1;
+            this.lblBody.Text = resources.GetString("lblBody.Text");
+            this.lblBody.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblTitle
             // 
@@ -75,7 +107,9 @@
             this.menuStrip1.Font = new System.Drawing.Font("Lucida Bright", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cANDIDATOToolStripMenuItem,
-            this.candidatoToolStripMenuItem1});
+            this.candidatoToolStripMenuItem1,
+            this.eleitoradoToolStripMenuItem,
+            this.partidoToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(124, 412);
@@ -94,7 +128,8 @@
             // candidatoToolStripMenuItem1
             // 
             this.candidatoToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.votosPorZonaToolStripMenuItem});
+            this.votosPorZonaToolStripMenuItem,
+            this.rankToolStripMenuItem});
             this.candidatoToolStripMenuItem1.Font = new System.Drawing.Font("Lucida Bright", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.candidatoToolStripMenuItem1.Margin = new System.Windows.Forms.Padding(0, 20, 0, 0);
             this.candidatoToolStripMenuItem1.Name = "candidatoToolStripMenuItem1";
@@ -105,9 +140,34 @@
             // votosPorZonaToolStripMenuItem
             // 
             this.votosPorZonaToolStripMenuItem.Name = "votosPorZonaToolStripMenuItem";
-            this.votosPorZonaToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
+            this.votosPorZonaToolStripMenuItem.Size = new System.Drawing.Size(258, 26);
             this.votosPorZonaToolStripMenuItem.Text = "Votos por Zona";
             this.votosPorZonaToolStripMenuItem.Click += new System.EventHandler(this.votosPorZonaToolStripMenuItem_Click);
+            // 
+            // rankToolStripMenuItem
+            // 
+            this.rankToolStripMenuItem.Name = "rankToolStripMenuItem";
+            this.rankToolStripMenuItem.Size = new System.Drawing.Size(258, 26);
+            this.rankToolStripMenuItem.Text = "Ranking Candidato";
+            this.rankToolStripMenuItem.Click += new System.EventHandler(this.rankToolStripMenuItem_Click);
+            // 
+            // eleitoradoToolStripMenuItem
+            // 
+            this.eleitoradoToolStripMenuItem.Font = new System.Drawing.Font("Lucida Bright", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.eleitoradoToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 20, 0, 0);
+            this.eleitoradoToolStripMenuItem.Name = "eleitoradoToolStripMenuItem";
+            this.eleitoradoToolStripMenuItem.Size = new System.Drawing.Size(111, 26);
+            this.eleitoradoToolStripMenuItem.Text = "Eleitorado";
+            this.eleitoradoToolStripMenuItem.Click += new System.EventHandler(this.eleitoradoToolStripMenuItem_Click);
+            // 
+            // partidoToolStripMenuItem
+            // 
+            this.partidoToolStripMenuItem.Font = new System.Drawing.Font("Lucida Bright", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.partidoToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 20, 0, 0);
+            this.partidoToolStripMenuItem.Name = "partidoToolStripMenuItem";
+            this.partidoToolStripMenuItem.Size = new System.Drawing.Size(111, 26);
+            this.partidoToolStripMenuItem.Text = "Partido";
+            this.partidoToolStripMenuItem.Click += new System.EventHandler(this.partidoToolStripMenuItem_Click);
             // 
             // lnkSair
             // 
@@ -171,5 +231,10 @@
         private System.Windows.Forms.LinkLabel lnkSair;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripMenuItem votosPorZonaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem eleitoradoToolStripMenuItem;
+        private System.Windows.Forms.Label lblBody;
+        private LiveCharts.WinForms.CartesianChart cartesianChart1;
+        private System.Windows.Forms.ToolStripMenuItem rankToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem partidoToolStripMenuItem;
     }
 }

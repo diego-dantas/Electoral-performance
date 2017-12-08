@@ -117,17 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lblBody.Text" xml:space="preserve">
-    <value>O Electroal Performance permite uma visão gráfica das eleições, 
-
-com ele você consegue realizar analises na eleição selecionada não somente o percentual de votos por candidato,
-
-mas também por partido, por cidade, seu respectivo público eleitoral e muito mais; você, candidato, 
-
-pode estudar sua próxima estratégia em cima dos dados obtidos e você, eleitor, pode conhecer mais de seu candidato!
-</value>
-  </data>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
 </root>

@@ -67,6 +67,8 @@
     <Compile Include="model\DAO\CidadeDAO.cs" />
     <Compile Include="model\DAO\EleicoesDAO.cs" />
     <Compile Include="model\DAO\EstadosDAO.cs" />
+    <Compile Include="model\DAO\PartidoDAO.cs" />
+    <Compile Include="model\DAO\ZonaDAO.cs" />
     <Compile Include="model\DTO\CandidatoDTO.cs" />
     <Compile Include="model\DTO\EleicoesDTO.cs" />
     <Compile Include="model\DTO\EstadosDTO.cs" />
@@ -79,6 +81,12 @@
     <Compile Include="model\DAO\Connection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="view\Eleitorado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Eleitorado.Designer.cs">
+      <DependentUpon>Eleitorado.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +105,18 @@
     <Compile Include="view\Candidato.Designer.cs">
       <DependentUpon>Candidato.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\Partido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Partido.Designer.cs">
+      <DependentUpon>Partido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\Ranking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\Ranking.Designer.cs">
+      <DependentUpon>Ranking.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Splash.resx">
       <DependentUpon>Splash.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,6 +129,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="view\Eleitorado.resx">
+      <DependentUpon>Eleitorado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\home.resx">
       <DependentUpon>home.cs</DependentUpon>
     </EmbeddedResource>
@@ -117,6 +140,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="view\Candidato.resx">
       <DependentUpon>Candidato.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Partido.resx">
+      <DependentUpon>Partido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\Ranking.resx">
+      <DependentUpon>Ranking.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
